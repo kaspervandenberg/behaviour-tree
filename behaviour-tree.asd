@@ -10,5 +10,6 @@
 			     (:file "behaviour")
 			     (:file "task")
 			     (:file "behaviour-execution")
+			     (:file "action")
 			     (:file "composite"))))
   :description "Event-driven behaviour tree extended with probabilistic action selection.")
