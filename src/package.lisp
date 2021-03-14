@@ -9,4 +9,5 @@
 	   initialise
 	   tick
 	   terminate
-	   defaction))
+	   defaction
+	   defbehaviour-condition))
