@@ -14,5 +14,6 @@
 			     (:file "composite")
 			     (:file "behaviour-sequence")
 			     (:file "selector")
-			     (:file "delay"))))
+			     (:file "delay")
+			     (:file "factory"))))
   :description "Event-driven behaviour tree extended with probabilistic action selection.")

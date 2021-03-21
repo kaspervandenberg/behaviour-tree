@@ -10,4 +10,8 @@
 	   tick
 	   terminate
 	   defaction
-	   defbehaviour-condition))
+	   defbehaviour-condition
+	   failure
+	   make-behaviour-sequence
+	   make-selector
+	   make-checked-action))
