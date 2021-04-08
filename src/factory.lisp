@@ -25,13 +25,17 @@ SUB-BEHAVIOURS is a list containing class symbols or instances of sub-classes of
 SUB-BEHAVIOURS is a list containing class symbols or instances of sub-classes of BEHAVIOUR."
   (apply #'make-composite 'selector sub-behaviours))
 
+(defun make-active-selector (&rest sub-behaviours)
+  "Make an ACTIVE-SELECTOR.
+SUB-BEHAVIOURS is a list containing class symbols or instances of sub-classes of BEHAVIOUR."
+  (apply #'make-composite 'active-selector sub-behaviours))
+
 (defbehaviour-condition failure nil
   "BEHAVIOUR that always returns :FAILURE."
   :failure)
 
 (defun make-checked-action (precondition behaviour &optional condition-fail-behaviour)
   "TICK BEHAVIOUR's TASK only when PRECONDITION succeeds; optionally TICK CONDITION-FAIL-BEHAVIOUR when CONDITION fails."
-  )
   (make-behaviour-sequence
    (if condition-fail-behaviour
        (make-selector precondition
@@ -40,3 +44,6 @@ SUB-BEHAVIOURS is a list containing class symbols or instances of sub-classes of
        precondition)
    behaviour))
 
+(defun make-goal (goal achieve-goal)
+  "Continuously check whether GOAL has been reached, if it has not been reached TICK ACHIEVE_GOAL."
+  (make-active-selector goal achieve-goal))

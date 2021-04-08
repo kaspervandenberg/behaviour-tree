@@ -6,6 +6,7 @@
 	   task
 	   behaviour-sequence
 	   selector
+	   active-selector
 	   initialise
 	   tick
 	   terminate
@@ -14,4 +15,6 @@
 	   failure
 	   make-behaviour-sequence
 	   make-selector
-	   make-checked-action))
+	   make--active-selector
+	   make-checked-action
+	   make-goal))
