@@ -8,10 +8,11 @@
     :initform "⎇"))
   (:documentation "Select the first :SUCCESSful SUB-BEHAVIOUR."))
 
-(defmethod update (system (task composite-task) (behaviour selector) scheduler data-context)
+(defun selector-update (task-selector system task behaviour scheduler data-context)
+  (declare (ignore behaviour))
   (with-slots (current-sub-task) task
     (if (and (not current-sub-task)
-	     (not (next-sub-task system task scheduler data-context)))
+	     (not (select-next-sub-task task-selector system task scheduler data-context)))
 	:failure
 	(let ((sub-task-return-status (tick system current-sub-task scheduler data-context)))
 	  (cond
@@ -23,3 +24,6 @@
 	     (tick system task scheduler data-context))
 	    ((eq sub-task-return-status :running)
 	     sub-task-return-status))))))
+
+(defmethod update (system (task composite-task) (behaviour selector) scheduler data-context)
+  (selector-update #'car system task behaviour scheduler data-context))

@@ -50,11 +50,16 @@ When a sub-BEHAVIOUR is INITIALSEd to a TASK, the BEHAVIOUR is discarded from RE
 	(terminate system (current-sub-task task) scheduler data-context)
 	(setf (slot-value task 'current-sub-task) nil))))
 
-(defun next-sub-task (system task scheduler data-context)
+(defun select-next-sub-task (task-selector system task scheduler data-context)
+  "Choose and INITIALISE one of REMAINING-BEHAVIOURs as CURRENT-SUB-TASK."
   (terminate-sub-task system task scheduler data-context)
   (with-slots (remaining-behaviours current-sub-task) task
-    (let ((behaviour (car remaining-behaviours)))
+    (let ((behaviour (funcall task-selector remaining-behaviours)))
       (when behaviour
-	(setf remaining-behaviours (cdr remaining-behaviours))
+	(setf remaining-behaviours (remove behaviour remaining-behaviours :count 1))
 	(setf current-sub-task (initialise system behaviour scheduler data-context)))
       current-sub-task)))
+
+(defun next-sub-task (system task scheduler data-context)
+  "Choose and INITIALISE the first of REMAINING-BEHAVIOURS as CURRENT-SUB-TASK."
+  (select-next-sub-task #'car system task scheduler data-context))

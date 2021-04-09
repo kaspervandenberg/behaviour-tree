@@ -30,6 +30,11 @@ SUB-BEHAVIOURS is a list containing class symbols or instances of sub-classes of
 SUB-BEHAVIOURS is a list containing class symbols or instances of sub-classes of BEHAVIOUR."
   (apply #'make-composite 'active-selector sub-behaviours))
 
+(defun make-random-selector (&rest sub-behaviours)
+  "Make a RANDOM-SELECTOR.
+SUB-BEHAVIOURS is a list containing class symbols or instances of sub-classes of BEHAVIOUR."
+  (apply #'make-composite 'random-selector sub-behaviours))
+
 (defbehaviour-condition failure nil
   "BEHAVIOUR that always returns :FAILURE."
   :failure)

@@ -7,6 +7,7 @@
 	   behaviour-sequence
 	   selector
 	   active-selector
+	   random-selector
 	   initialise
 	   tick
 	   terminate
@@ -16,5 +17,6 @@
 	   make-behaviour-sequence
 	   make-selector
 	   make--active-selector
+	   make-random-selector
 	   make-checked-action
 	   make-goal))
