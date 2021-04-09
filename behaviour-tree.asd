@@ -18,4 +18,4 @@
 			     (:file "random-selector")
 			     (:file "delay")
 			     (:file "factory"))))
-  :description "Event-driven behaviour tree extended with probabilistic action selection.")
+  :description "Behaviour tree (AI) control mechanism.")
